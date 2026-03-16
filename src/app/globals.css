@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+:root {
+  /* Fondos y Texto Base */
+  --background: #ffffff;
+  --foreground: #111111; /* Ajustado al negro principal del diseño */
+
+  /* Fondos de Tarjetas */
+  --bg-card: #f6f6f6;
+  --bg-card-hover: #efefef;
+
+  /* Navegación */
+  --bg-nav: #1d2942; /* Blanco translúcido para efecto cristal */
+  --border-nav: #f4f4f5; /* Un borde casi invisible para separar del contenido */
+  /* Botones */
+  --btn-primary: #1d2942;
+  --btn-primary-hover: #3e558a;
+  --btn-secondary: #ffffff;
+  --btn-secondary-hover: #e7e7e7;
+
+  --btn-primary-disable: #3c5281;
+  --btn-primary-hover-disable: #3e558a;
+  --btn-secondary-disable: #05112b;
+  --btn-secondary-hover-disable: #05112b;
+
+  /* Texto */
+  --text-muted: #71717a;
+  --text-inverse: #ffffff;
+
+  /* Acentos */
+  --accent: #e63946;
+  --accent-hover: #d62828;
+
+  /* Bordes */
+  --border-light: #e4e4e7;
+  --border-hover: #d4d4d8;
+  --border-dark: #111111;
+
+  /* Accesibilidad (Focus) */
+  --focus-ring: #111111;
+
+  /* Sombras */
+  --shadow-card-hover:
+    0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  --shadow-icon:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+
+  /* Radios */
+  --radius-card: 0.3rem;
+  --radius-pill: 9999px;
+  --radius-badge: 0.375rem;
+
+  /* Espaciados */
+  --spacing-section-y: 5rem;
+  --spacing-card-gap: 1.5rem;
+  --spacing-card-p: 1.25rem;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+
+    --bg-card: #171717;
+    --bg-card-hover: #262626;
+
+    --bg-nav: #1b1b1b;
+    --border-nav: #1f1f22;
+
+    --btn-primary: #ececec;
+    --btn-primary-hover: #d4d4d4;
+    --btn-secondary: #171717;
+    --btn-secondary-hover: #262626;
+    --btn-icon: #171717;
+    --btn-icon-hover: #262626;
+
+    --text-muted: #a1a1aa;
+    --text-inverse: #0a0a0a;
+
+    --accent: #ef4444;
+    --accent-hover: #dc2626;
+
+    --border-light: #27272a;
+    --border-hover: #5e5e5e;
+    --border-dark: #646464;
+
+    --focus-ring: #ededed;
+
+    --shadow-card-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    --shadow-icon: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+
+    --focus-ring: #111111;
+
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: #d4d4d8;
+    --scrollbar-thumb-hover: #a1a1aa;
+  }
+}
+ */
+
+/* Inyección de variables en el tema de Tailwind v4 */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--bg-card);
+  --color-card-hover: var(--bg-card-hover);
+  --color-nav: var(--bg-nav);
+  --color-nav-border: var(--border-nav);
+
+  --color-btn-primary: var(--btn-primary);
+  --color-btn-primary-hover: var(--btn-primary-hover);
+  --color-btn-secondary: var(--btn-secondary);
+  --color-btn-secondary-hover: var(--btn-secondary-hover);
+  --color-btn-icon: var(--btn-icon);
+  --color-btn-icon-hover: var(--btn-icon-hover);
+
+  --color-btn-primary-disable: var(--btn-primary-disable);
+  --color-btn-primary-hover-disable: var(--btn-primary-hover-disable);
+  --color-btn-secondary-disable: var(--btn-secondary-disable);
+  --color-btn-secondary-hover-disable: var(--btn-secondary-hover-disable);
+
+  --color-muted: var(--text-muted);
+  --color-inverse: var(--text-inverse);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+
+  --color-border-light: var(--border-light);
+  --color-border-hover: var(--border-hover);
+  --color-border-dark: var(--border-dark);
+
+  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-icon: var(--shadow-icon);
+
+  --radius-card: var(--radius-card);
+  --radius-pill: var(--radius-pill);
+  --radius-badge: var(--radius-badge);
+
+  --spacing-section: var(--spacing-section-y);
+  --spacing-grid-gap: var(--spacing-card-gap);
+  --spacing-card-p: var(--spacing-card-p);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+
+  /* Accesibilidad en oscuro */
+  --focus-ring: #ededed;
+
+  /* Scrollbar en oscuro */
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: #3f3f46; /* Gris oscuro que combine con el nav/cards */
+  --scrollbar-thumb-hover: #5e5e5e;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter);
+}
+
+/* Estilos de foco para accesibilidad */
+
+/* --- Estilos de Scrollbar Personalizado --- */
+
+/* Para Firefox */
+.scroll {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Para Chrome, Edge y Safari */
+.scroll::-webkit-scrollbar {
+  width: 8px; /* Ancho delgado y elegante */
+  height: 8px; /* Para scroll horizontal si llegara a existir */
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 10px;
+  /* El borde transparente crea un efecto de margen (padding) interno */
+  border: 2px solid var(--background);
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
