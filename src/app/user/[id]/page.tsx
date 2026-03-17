@@ -24,7 +24,6 @@ export default function User() {
           </span>
         </div>
         <Table
-          headers={["Name", "Date", "Price"]}
           options={[
             { name: "Book1", date: new Date("12-08-2020"), price: 15 },
             { name: "Book1", date: new Date("12-08-2020"), price: 15 },

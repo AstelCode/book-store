@@ -80,7 +80,7 @@ export const BookItem = ({
 
       {!hidePrice && (
         <div className="[grid-area:price] flex items-center justify-center font-extrabold text-lg">
-          {price}$
+          ${price}
         </div>
       )}
 

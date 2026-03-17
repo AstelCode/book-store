@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/Input";
 import { Submit } from "@/components/ui/Submit";
-import { UploadImage } from "@/components/ui/UploadImage";
+import { ImageInput } from "@/components/ui/ImageInput";
 import { useState } from "react";
 
 export default function AddBook() {
@@ -10,7 +10,7 @@ export default function AddBook() {
     <div className="h-full flex items-center justify-center">
       <div className="border w-140  rounded-md">
         <form className="grid grid-cols-2 h-full p-6 gap-5 grid-rows-[1fr_50px]">
-          <UploadImage />
+          <ImageInput />
           <div className="flex flex-col gap-2">
             <label htmlFor="name">Name</label>
             <Input id="price" type="number" />
