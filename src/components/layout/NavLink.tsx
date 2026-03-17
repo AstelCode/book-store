@@ -20,7 +20,7 @@ export const NavLink = ({
   return (
     <Link
       href={href}
-      className={`group h-12 select-none px-2 overflow-hidden  rounded-card transition-[width] duration-300  ${
+      className={`group h-12 select-none px-2 overflow-hidden  rounded-card transition-[width] duration-300 ${
         disable
           ? active
             ? "bg-btn-primary-disable hover:bg-btn-primary-hover-disable"
@@ -28,7 +28,7 @@ export const NavLink = ({
           : active
             ? "bg-btn-secondary hover:bg-btn-secondary-hover"
             : "hover:bg-btn-primary-hover"
-      } flex gap-6 items-center`}
+      } flex gap-6 items-center max-w-45`}
     >
       {icon({
         size: 32,
@@ -42,7 +42,7 @@ export const NavLink = ({
         }`,
       })}
       <span
-        className={`${disable ? "text-btn-secondary" : active ? "text-btn-primary" : "text-btn-secondary"}
+        className={`max-h-5 min-w-20 max-w-20 ${disable ? "text-btn-secondary" : active ? "text-btn-primary" : "text-btn-secondary"}
           ${isOpen ? "opacity-100 ml-0" : "opacity-0 -ml-2"}`}
       >
         {name}

@@ -45,7 +45,7 @@ const NavUser = ({
 }) => {
   return (
     <div
-      className={`${isOpen ? "grid-cols-[5rem_auto]" : ""} ${isLogged && (active ? "bg-btn-secondary text-btn-primar hover:bg-btn-primary-hover" : "text-btn-secondary")} ${!isLogged && "bg-btn-secondary text-btn-primary "} cursor-pointer h-12 grid items-center pl-1  overflow-hidden  rounded-md`}
+      className={`max-w-45 ${isOpen ? "grid-cols-[5rem_auto]" : ""} ${isLogged && (active ? "bg-btn-secondary text-btn-primar hover:bg-btn-primary-hover" : "text-btn-secondary")} ${!isLogged && "bg-btn-secondary text-btn-primary "} cursor-pointer h-12 grid items-center pl-1  overflow-hidden  rounded-md`}
       onClick={onClickImage}
     >
       {isLogged ? (
@@ -64,7 +64,9 @@ const NavUser = ({
         </div>
       )}
       {isOpen && isLogged && <span className=" text-lg">Name</span>}
-      {isOpen && !isLogged && <span className=" text-lg">Log in</span>}
+      {isOpen && !isLogged && (
+        <span className=" text-lg max-h-10 min-w-20">Log in</span>
+      )}
     </div>
   );
 };
@@ -83,8 +85,9 @@ export const Nav = ({ isAdmin, isLogged }: NavProps) => {
 
   return (
     <NavContainer
+      setIsOpen={setIsOpen}
       isOpen={isOpen}
-      className="grid grid-rows-[3.5rem_auto_3.5rem] h-full gap-2 relative"
+      className="grid grid-rows-[3.5rem_auto_3.5rem]   gap-2 "
     >
       <NavUser
         isOpen={isOpen}
@@ -105,7 +108,6 @@ export const Nav = ({ isAdmin, isLogged }: NavProps) => {
           />
         ))}
       </div>
-      <NavToggleButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
     </NavContainer>
   );
 };

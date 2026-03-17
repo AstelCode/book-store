@@ -33,8 +33,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
-        <div className="h-screen grid grid-cols-[auto_1fr] gap-9 pr-10 pl-1 relative">
-          <Nav isAdmin />
+        <div className="h-screen grid grid-cols-[6rem_1fr] gap-9 pr-10 pl-1 relative">
+          <Nav isLogged />
           <div className="h-full overflow-hidden ">{children}</div>
         </div>
       </body>
