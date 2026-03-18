@@ -1,3 +1,4 @@
+"use server";
 import { GetCurrentUserAction } from "@/actions/authActions";
 import { Table } from "@/components/user/Table";
 import { UserProfileCard } from "@/components/user/UserProfileCard";

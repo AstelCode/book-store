@@ -20,7 +20,9 @@ export const BooksContainer = (props: BookContainerProps) => {
   const [isList, setIsList] = useState(props.list ?? false);
   return (
     <div
-      className={`h-full min-h-0 ${props.hideControls ? " grid grid-rows-1" : "grid grid-rows-[40px_1fr]"}`}
+      className={`h-full min-h-0 ${
+        props.hideControls ? " grid grid-rows-1" : "grid grid-rows-[40px_1fr]"
+      }`}
     >
       {!props.hideControls && (
         <div className="flex gap-4">
@@ -50,16 +52,11 @@ export const BooksContainer = (props: BookContainerProps) => {
           className={
             isList
               ? "flex flex-col gap-5 "
-              : "grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-5"
+              : "grid grid-cols-[repeat(auto-fill,minmax(12.5rem,1fr))] gap-4"
           }
         >
           {(props.books ?? []).map((item) => (
-            <BookCard
-              key={item.id} //! change to key
-              {...item}
-              {...props}
-              isList={isList}
-            />
+            <BookCard key={item.id} book={item} {...props} isList={isList} />
           ))}
         </div>
       </div>

@@ -1,3 +1,4 @@
+"use server";
 import { IsUserLogged } from "@/actions/authActions";
 import { BooksContainer } from "@/components/books/BooksContainer";
 import { BooksFilter } from "@/components/books/BooksFilter";
@@ -16,7 +17,7 @@ const data: { src?: string; name: string; price: number }[] = [
   { name: "book 9", price: 10 },
 ];
 
-export default async function Books() {
+export default async function Library() {
   const logged = await IsUserLogged();
   if (!logged) {
     redirect("/auth");
@@ -28,7 +29,7 @@ export default async function Books() {
       </div>
       <Search />
       <BooksFilter />
-      <BooksContainer hideFavorite hideAddCart hidePrice books={data} />
+      <BooksContainer hideFavorite hideAddCart hidePrice />
     </div>
   );
 }

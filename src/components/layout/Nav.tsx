@@ -58,10 +58,10 @@ export const Nav = () => {
         {user && !user.admin && (
           <NavLink
             icon={IoLibraryOutline}
-            active={path.startsWith("/dashboard/books")}
-            href="/dashboard/books"
+            active={path.startsWith("/dashboard/library")}
+            href="/dashboard/library"
             isOpen={isOpen}
-            name="Books"
+            name="Library"
           />
         )}
         {user?.admin && (
@@ -70,7 +70,7 @@ export const Nav = () => {
             icon={MdOutlineAdd}
             href="/dashboard/add-book"
             isOpen={isOpen}
-            name="Books"
+            name="Add book"
           />
         )}
       </div>

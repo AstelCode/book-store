@@ -1,3 +1,5 @@
+"use server";
+
 import { IsAdminUser, IsUserLogged } from "@/actions/authActions";
 import { BooksContainer } from "@/components/books/BooksContainer";
 import { PayContainer } from "@/components/cart/PayContainer";
@@ -23,7 +25,7 @@ export default async function Cart() {
 
   return (
     <div className="h-full grid grid-rows-[1fr_13rem] lg:grid-rows-1 lg:grid-cols-[1fr_25rem]  gap-6 py-6">
-      <BooksContainer hideControls list hideFavorite hideAddCart books={data} />
+      <BooksContainer hideControls list hideFavorite hideAddCart />
       <PayContainer />
     </div>
   );

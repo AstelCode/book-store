@@ -1,6 +1,6 @@
 "use server";
 
-import { editUser } from "@/lib/UsersData";
+import { editUser, markFavoriteBook } from "@/lib/UsersData";
 import { GetCurrentUserAction } from "./authActions";
 import { revalidatePath } from "next/cache";
 

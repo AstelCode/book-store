@@ -12,7 +12,7 @@ export async function SignUpAction(formData: FormData) {
   const user = await saveUser(
     email as string,
     name as string,
-    password as string,
+    password as string
   );
 
   const req = await cookies();
@@ -24,7 +24,7 @@ export async function SignUpAction(formData: FormData) {
     path: "/",
   });
 
-  redirect("/dashboard/books");
+  redirect("/dashboard/library");
 }
 
 export async function SignInAction(formData: FormData) {
@@ -53,7 +53,7 @@ export async function SignInAction(formData: FormData) {
     });
     redirect("/dashboard/user");
   }
-  redirect("/dashboard/books");
+  redirect("/dashboard/library");
 }
 
 export async function GetCurrentUserAction() {

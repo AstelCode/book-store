@@ -1,3 +1,5 @@
+import { Book } from "@/lib/BooksData";
+
 export interface BookItemProps {
   hideImage?: boolean;
   hideAddCart?: boolean;
@@ -5,9 +7,6 @@ export interface BookItemProps {
   hidePrice?: boolean;
   showTrash?: boolean;
 
-  price?: number;
-  name?: string;
-  cover?: string;
   isList?: boolean;
-  key: string;
+  book: Book;
 }

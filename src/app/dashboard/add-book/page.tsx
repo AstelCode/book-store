@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import { AddBookForm } from "@/components/addBook/addBookForm";
 

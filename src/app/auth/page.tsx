@@ -9,7 +9,7 @@ export default async function Login() {
     if (isAdmin) {
       redirect("/dashboard/user");
     } else {
-      redirect("/dashboard/books");
+      redirect("/dashboard/library");
     }
   }
 
