@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 import { Nav } from "../components/layout/Nav";
+import { GetCurrentUserAction } from "@/actions/authActions";
+import { UserProvider } from "@/context/UserContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,20 +25,25 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  /*   const currentUser = await GetCurrentUserAction(); */
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
-        <div className="h-screen grid grid-cols-[6rem_1fr] gap-9 pr-10 pl-1 relative">
-          <Nav isLogged />
-          <div className="h-full overflow-hidden ">{children}</div>
-        </div>
+        {children}
+        {/*         <UserProvider initialUser={currentUser}>
+          <div className="h-screen grid grid-cols-[6rem_1fr] gap-9 pr-10 pl-1 relative">
+            <Nav />
+            <div className="h-full overflow-hidden ">{children}</div>
+          </div>
+        </UserProvider> */}
       </body>
     </html>
   );

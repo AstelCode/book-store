@@ -5,3 +5,4 @@ export const formatDate = (date: Date) => {
 
   return `${day}-${month}-${year}`;
 };
+export const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));

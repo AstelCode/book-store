@@ -1,5 +1,3 @@
-"use client";
-
 export interface BookItemProps {
   hideImage?: boolean;
   hideAddCart?: boolean;
@@ -9,7 +7,7 @@ export interface BookItemProps {
 
   price?: number;
   name?: string;
-  src?: string;
+  cover?: string;
   isList?: boolean;
   key: string;
 }

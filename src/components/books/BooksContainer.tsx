@@ -2,18 +2,8 @@
 import { useState } from "react";
 import { FaList } from "react-icons/fa6";
 import { CiGrid41 } from "react-icons/ci";
-import { BookItem } from "./BookItem";
-const data: { src?: string; name: string; price: number }[] = [
-  { name: "book 1", price: 10 },
-  { name: "book 2", price: 10 },
-  { name: "book 3", price: 10 },
-  { name: "book 4", price: 10 },
-  { name: "book 5", price: 10 },
-  { name: "book 6", price: 10 },
-  { name: "book 7", price: 10 },
-  { name: "book 8", price: 10 },
-  { name: "book 9", price: 10 },
-];
+import { BookCard } from "./BookCard";
+import { Book } from "@/lib/BooksData";
 
 interface BookContainerProps {
   hideImage?: boolean;
@@ -23,6 +13,7 @@ interface BookContainerProps {
   hideTrash?: boolean;
   list?: boolean;
   hideControls?: boolean;
+  books?: Book[];
 }
 
 export const BooksContainer = (props: BookContainerProps) => {
@@ -62,9 +53,9 @@ export const BooksContainer = (props: BookContainerProps) => {
               : "grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-5"
           }
         >
-          {data.map((item) => (
-            <BookItem
-              key={item.name} //! change to key
+          {(props.books ?? []).map((item) => (
+            <BookCard
+              key={item.id} //! change to key
               {...item}
               {...props}
               isList={isList}

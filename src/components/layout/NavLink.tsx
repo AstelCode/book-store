@@ -9,6 +9,8 @@ export const NavLink = ({
   name,
   isOpen,
   disable,
+  badge,
+  badgeValue,
 }: {
   icon: (props: { size: number; className: string }) => ReactNode;
   active?: boolean;
@@ -16,11 +18,13 @@ export const NavLink = ({
   name?: string;
   isOpen?: boolean;
   disable?: boolean;
+  badge?: boolean;
+  badgeValue?: number;
 }) => {
   return (
     <Link
       href={href}
-      className={`group h-12 select-none px-2 overflow-hidden  rounded-card transition-[width] duration-300 ${
+      className={`relative flex gap-6 items-center min-w-0 max-w-45 group h-12 select-none px-2   rounded-card transition-[width] duration-300 ${
         disable
           ? active
             ? "bg-btn-primary-disable hover:bg-btn-primary-hover-disable"
@@ -28,11 +32,11 @@ export const NavLink = ({
           : active
             ? "bg-btn-secondary hover:bg-btn-secondary-hover"
             : "hover:bg-btn-primary-hover"
-      } flex gap-6 items-center max-w-45`}
+      }`}
     >
       {icon({
-        size: 32,
-        className: `min-w-[32px] min-h-[32px]
+        size: 30,
+        className: `min-w-[31px] min-h-[31px]
         ${
           disable
             ? "stroke-btn-secondary fill-btn-secondary "
@@ -47,6 +51,11 @@ export const NavLink = ({
       >
         {name}
       </span>
+      {badge && (
+        <div className="flex justify-center items-center text-xs text-white absolute size-6  rounded-full  -top-3 -right-2 bg-red-400 border-border-dark border">
+          {badgeValue}
+        </div>
+      )}
     </Link>
   );
 };

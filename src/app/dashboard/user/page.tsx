@@ -1,22 +1,16 @@
-"use client";
-import { useState } from "react";
-import { UserInfo } from "../../../components/user/UserInfo";
-import { Table } from "../../../components/user/Table";
-import { EditModal } from "../../../components/user/EditModal";
+import { GetCurrentUserAction } from "@/actions/authActions";
+import { Table } from "@/components/user/Table";
+import { UserProfileCard } from "@/components/user/UserProfileCard";
+import { redirect } from "next/navigation";
 
-export default function User() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onClose = () => {
-    setIsOpen(false);
-  };
-  const onEdit = () => {
-    setIsOpen(true);
-  };
-
+export default async function User() {
+  const user = await GetCurrentUserAction();
+  if (!user) {
+    redirect("/auth");
+  }
   return (
     <div className="h-full grid grid-rows-[10rem_1fr] py-4 gap-5">
-      <UserInfo onEdit={onEdit} />
+      <UserProfileCard />
       <div className="grid grid-rows-[3rem_1fr]">
         <div className="">
           <span className="border-b-btn-primary border-b pb-2">
@@ -34,7 +28,6 @@ export default function User() {
           ]}
         />
       </div>
-      <EditModal isOpen={isOpen} onClose={onClose} />
     </div>
   );
 }

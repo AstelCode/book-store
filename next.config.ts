@@ -16,10 +16,13 @@ const nextConfig: NextConfig = {
         hostname: "i.pravatar.cc",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "covers.openlibrary.org",
+        pathname: "/**",
+      },
     ],
   },
-
-  /* config options here */
 };
 
 export default nextConfig;
