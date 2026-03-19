@@ -1,36 +1,31 @@
 "use client";
-import { useState, useTransition } from "react";
-import { Book } from "@/lib/BooksData";
-import { CardButton } from "../ui/CardButton";
-import { FavoriteButton } from "../ui/FavoriteButton";
-import { Loader2 } from "lucide-react";
-import { markFavoriteBookAction } from "@/actions/bookAction";
+import { removeBookFromCartAction } from "@/actions/cartActions";
+import { CardButton } from "@/components/ui/CardButton";
 import { useUser } from "@/context/UserContext";
+import { Book } from "@/lib/BooksData";
+import { Loader2, Trash2Icon } from "lucide-react";
+import { useState, useTransition } from "react";
 
-export const BookFavoriteButton = ({
+export const BookRemoveFromCartButton = ({
   isList,
   book,
 }: {
   isList?: boolean;
   book: Book;
 }) => {
-  const { user } = useUser();
   const [isPending, startTransition] = useTransition();
   const [isLoading, setIsLoading] = useState(false);
 
-  const [favorite, setFavorite] = useState(user?.favorites.includes(book.id));
-
-  const handleFavorite = () => {
+  const handleFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (isLoading) return;
 
-    setFavorite((prev) => !prev);
     setIsLoading(true);
 
     startTransition(async () => {
       try {
-        await markFavoriteBookAction(book.id);
-      } catch {
-        setFavorite((prev) => !prev);
+        await removeBookFromCartAction(book.id);
       } finally {
         setIsLoading(false);
       }
@@ -42,13 +37,13 @@ export const BookFavoriteButton = ({
       onClick={handleFavorite}
       disabled={isLoading}
       className={`[grid-area:favorite] grid place-content-center transition ${
-        isList ? "w-30" : "ml-11 w-9 h-9"
+        isList ? "w-30" : "ml-10 w-9 h-9"
       }`}
     >
       {isLoading || isPending ? (
         <Loader2 className="animate-spin" size={22} />
       ) : (
-        <FavoriteButton size={25} active={favorite} />
+        <Trash2Icon size={25} />
       )}
     </CardButton>
   );

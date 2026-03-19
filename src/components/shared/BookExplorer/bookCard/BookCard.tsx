@@ -1,16 +1,22 @@
 import Image from "next/image";
-import { IoCartOutline } from "react-icons/io5";
-import { FavoriteButton } from "../ui/FavoriteButton";
-import { CardButton } from "../ui/CardButton";
+import { CardButton } from "../../../ui/CardButton";
 import { BookItemProps } from "./BookCardProps";
 import { BookFavoriteButton } from "./BookFavoriteButton";
+import { BookAddToCartButton } from "./BookAddToCartButton";
+import { BookRemoveFromCartButton } from "./BookRemoveFromCartButton";
+import { BookEditButton } from "./BookEditButton";
+import Link from "next/link";
+import { BookBuyButton } from "./BookBuyButton";
 
 export const BookCard = ({
   book,
   hideAddCart,
   hideFavorite,
-  hidePrice,
+  hideBuy,
   hideImage,
+  showTrashCart,
+  showPrice,
+  showEdit,
   isList,
 }: BookItemProps) => {
   const classNameGrid = `w-50 gap-2
@@ -24,7 +30,8 @@ export const BookCard = ({
   `;
 
   return (
-    <article
+    <Link
+      href={`/dashboard/book/${book.id}`}
       className={` hover:shadow-lg bg-card rounded-card p-2 transition border border-car
           ${isList ? classNameList : classNameGrid}
         `}
@@ -53,36 +60,24 @@ export const BookCard = ({
         </div>
       )}
 
-      {!hideFavorite && (
-        <div
-          className={`[grid-area:favorite] flex  ${
-            isList ? "-mt-1" : "items-center justify-center"
-          }`}
-        >
-          <FavoriteButton size={22} />
-        </div>
-      )}
-
-      {!hidePrice && (
+      {!hideBuy && (
         <div
           className={`[grid-area:price] flex justify-center items-center ${
             isList ? "h-26 mt-4" : "px-2 "
           }`}
         >
-          <CardButton
-            className={`${
-              isList
-                ? "flex-col px-4  gap-3 flex py-4 w-full h-50"
-                : "justify-between h-50  items-center pr-3 pl-2 py-6"
-            } h-full w-full flex `}
-          >
-            <span className="border border-border-dark px-6 py-1.5 rounded-card font-bold">
-              Buy
-            </span>
-            <span className="text-base font-extrabold">${book.price}</span>
-          </CardButton>
+          <BookBuyButton isList={isList} book={book} />
         </div>
       )}
+
+      {showPrice && (
+        <div
+          className={`[grid-area:price] flex justify-center items-end pb-5 pr-2`}
+        >
+          <span className="text-xl font-extrabold">${book.price}</span>
+        </div>
+      )}
+
       {isList && (
         <div
           className={`[grid-area:description] font-montserrat text-sm px-5 pr-8 overflow-hidden  ${
@@ -92,21 +87,13 @@ export const BookCard = ({
           {book.description}
         </div>
       )}
-      {!hideAddCart && (
-        <CardButton
-          className={`h-10 [grid-area:cart] grid place-content-center ${
-            isList ? "mt-3" : "ml-2 h-9 w-9"
-          }`}
-        >
-          <IoCartOutline
-            size={26}
-            className="fill-btn-primary stroke-btn-primary "
-          />
-          {/*  add to cart */}
-        </CardButton>
-      )}
 
-      <BookFavoriteButton isList={isList} book={book} />
-    </article>
+      {showTrashCart && (
+        <BookRemoveFromCartButton isList={isList} book={book} />
+      )}
+      {!hideFavorite && <BookFavoriteButton isList={isList} book={book} />}
+      {!hideAddCart && <BookAddToCartButton isList={isList} book={book} />}
+      {showEdit && <BookEditButton isList={isList} book={book} />}
+    </Link>
   );
 };

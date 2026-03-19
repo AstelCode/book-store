@@ -1,14 +1,24 @@
-"use server";
-import { IsUserLogged } from "@/actions/authActions";
+import { IsAdminUser, IsUserLogged } from "@/actions/authActions";
 import { redirect } from "next/navigation";
-import { getBooks } from "@/lib/BooksData";
-import { StoreClient } from "@/components/store/StoreClient";
+import { getBooksAction } from "@/actions/bookAction";
+import { BookExplorer } from "@/components/shared/BookExplorer/BookExplorer";
+import { getUserStore as getUserStoreAction } from "@/actions/userAction";
 
 export default async function Store() {
-  const logged = IsUserLogged();
+  const logged = await IsUserLogged();
+  const isAdmin = await IsAdminUser();
+
   if (!logged) redirect("/auth");
 
-  const books = await getBooks();
+  const books = await getUserStoreAction();
 
-  return <StoreClient books={books} />;
+  return (
+    <BookExplorer
+      books={books}
+      hideFavorite={isAdmin}
+      hideAddCart={isAdmin}
+      hideBuy={isAdmin}
+      showPrice={isAdmin}
+    />
+  );
 }

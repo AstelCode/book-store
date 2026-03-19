@@ -1,5 +1,3 @@
-"use server";
-
 import { AddBookForm } from "@/components/addBook/addBookForm";
 
 export default function AddBook() {

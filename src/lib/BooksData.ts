@@ -1,5 +1,5 @@
 import { delay } from "@/utils/utils";
-
+import { v4 as uuid } from "uuid";
 export interface Book {
   id: string;
   price: number;
@@ -9,7 +9,8 @@ export interface Book {
   covers?: string[];
   comments: {
     userId: string;
-    message: string;
+    comment: string;
+    id: string;
   }[];
   languages: string[];
 }
@@ -720,6 +721,38 @@ const booksDB: Book[] = [
 ];
 
 export const getBooks = async () => {
+  const dbToken = process.env.SIMULATED_DB_TOKEN;
+  if (!dbToken) {
+    console.warn(
+      "⚠️ Advertencia: No se encontró SIMULATED_DB_TOKEN en .env.local. Usando conexión no segura.",
+    );
+  } else {
+    console.log(
+      `🔒 [Server] Autenticando con DB simulada usando token: ${dbToken.substring(0, 10)}...`,
+    );
+  }
+
   await delay(500);
   return booksDB;
+};
+
+export const addBook = async (book: Book) => {
+  await delay(500);
+  booksDB.push(book);
+};
+
+export const getBook = async (bookId: string) => {
+  await delay(500);
+  return booksDB.find((item) => item.id == bookId) ?? null;
+};
+
+export const addComment = async (
+  comment: string,
+  userId: string,
+  bookId: string,
+) => {
+  await delay(500);
+  const book = booksDB.find((item) => item.id == bookId) ?? null;
+  if (!book) return;
+  book.comments.unshift({ userId, comment, id: uuid() });
 };

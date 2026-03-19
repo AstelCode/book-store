@@ -1,6 +1,6 @@
-"use server";
 import { GetCurrentUserAction } from "@/actions/authActions";
-import { Table } from "@/components/user/Table";
+import { getGlobalPaymentsAction } from "@/actions/paymentsActions";
+import { PaymentsTable } from "@/components/user/paymentTable/Table";
 import { UserProfileCard } from "@/components/user/UserProfileCard";
 import { redirect } from "next/navigation";
 
@@ -9,6 +9,14 @@ export default async function User() {
   if (!user) {
     redirect("/auth");
   }
+
+  let payments;
+  if (user.admin) {
+    payments = await getGlobalPaymentsAction();
+  } else {
+    payments = user.payments;
+  }
+
   return (
     <div className="h-full grid grid-rows-[10rem_1fr] py-4 gap-5">
       <UserProfileCard />
@@ -18,16 +26,7 @@ export default async function User() {
             My purchases
           </span>
         </div>
-        <Table
-          options={[
-            { name: "Book1", date: new Date("12-08-2020"), price: 15 },
-            { name: "Book1", date: new Date("12-08-2020"), price: 15 },
-            { name: "Book1", date: new Date("12-08-2020"), price: 15 },
-            { name: "Book1", date: new Date("08-12-2020"), price: 15 },
-            { name: "Book1", date: new Date("12-08-2020"), price: 15 },
-            { name: "Book1", date: new Date("12-08-2020"), price: 15 },
-          ]}
-        />
+        <PaymentsTable options={payments} isAdmin={user.admin} />
       </div>
     </div>
   );

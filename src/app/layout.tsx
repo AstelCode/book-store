@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Book store",
   description: "Digital book store",
+  openGraph: {
+    title: "Book Store",
+    description: "Digital book store - Encuentra tus libros favoritos",
+    type: "website",
+  },
 };
 
 const inter = Inter({

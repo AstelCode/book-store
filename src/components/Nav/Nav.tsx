@@ -51,8 +51,8 @@ export const Nav = () => {
             active={path.startsWith("/dashboard/cart")}
             name={"Cart"}
             isOpen={isOpen}
-            badge={true}
-            badgeValue={12}
+            badge={user.cart.length > 0}
+            badgeValue={user.cart.length}
           />
         )}
         {user && !user.admin && (

@@ -4,8 +4,10 @@ export interface BookItemProps {
   hideImage?: boolean;
   hideAddCart?: boolean;
   hideFavorite?: boolean;
-  hidePrice?: boolean;
-  showTrash?: boolean;
+  hideBuy?: boolean;
+  showPrice?: boolean;
+  showTrashCart?: boolean;
+  showEdit?: boolean;
 
   isList?: boolean;
   book: Book;

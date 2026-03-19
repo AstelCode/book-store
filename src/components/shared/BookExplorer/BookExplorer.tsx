@@ -1,12 +1,22 @@
 "use client";
-
-import { useState, useMemo } from "react";
-import { Search } from "@/components/ui/Search";
-import { BooksFilter } from "@/components/books/BooksFilter";
-import { BooksContainer } from "@/components/books/BooksContainer";
+import { BooksFilter } from "./BooksFilter";
+import { BooksContainer } from "./BooksContainer";
 import { Book } from "@/lib/BooksData";
+import { useMemo, useState } from "react";
+import { Search } from "@/components/ui/Search";
 
-export const StoreClient = ({ books }: { books: Book[] }) => {
+interface BookExplorerProps {
+  books: Book[];
+  hideImage?: boolean;
+  hideAddCart?: boolean;
+  hideFavorite?: boolean;
+  hideBuy?: boolean;
+  showPrice?: boolean;
+  showTrashCart?: boolean;
+  showEdit?: boolean;
+}
+
+export const BookExplorer = ({ books, ...props }: BookExplorerProps) => {
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState<string[]>([]);
 
@@ -32,7 +42,7 @@ export const StoreClient = ({ books }: { books: Book[] }) => {
 
       <BooksFilter onChange={setFilters} />
 
-      <BooksContainer books={filteredBooks} hideFavorite />
+      <BooksContainer books={filteredBooks} {...props} />
     </div>
   );
 };

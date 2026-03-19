@@ -1,6 +1,6 @@
 import { GetCurrentUserAction } from "@/actions/authActions";
 import { UserProvider } from "@/context/UserContext";
-import { Nav } from "@/components/layout/Nav";
+import { Nav } from "@/components/Nav/Nav";
 
 export default async function Layout({
   children,

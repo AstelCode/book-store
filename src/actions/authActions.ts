@@ -12,7 +12,7 @@ export async function SignUpAction(formData: FormData) {
   const user = await saveUser(
     email as string,
     name as string,
-    password as string
+    password as string,
   );
 
   const req = await cookies();

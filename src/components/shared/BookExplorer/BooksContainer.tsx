@@ -2,15 +2,18 @@
 import { useState } from "react";
 import { FaList } from "react-icons/fa6";
 import { CiGrid41 } from "react-icons/ci";
-import { BookCard } from "./BookCard";
+import { BookCard } from "./bookCard/BookCard";
 import { Book } from "@/lib/BooksData";
 
 interface BookContainerProps {
   hideImage?: boolean;
   hideAddCart?: boolean;
   hideFavorite?: boolean;
-  hidePrice?: boolean;
-  hideTrash?: boolean;
+  hideBuy?: boolean;
+  showPrice?: boolean;
+  showTrashCart?: boolean;
+  showEdit?: boolean;
+
   list?: boolean;
   hideControls?: boolean;
   books?: Book[];

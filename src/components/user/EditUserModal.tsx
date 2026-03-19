@@ -4,7 +4,7 @@ import { Submit } from "@/components/ui/Submit";
 import { TextArea } from "@/components/ui/TextArea";
 import { ImageInput } from "../ui/ImageInput";
 import { useUser } from "@/context/UserContext";
-import { EditUserAction } from "@/actions/editUserAction";
+import { editUserAction } from "@/actions/userAction";
 import { useTransition } from "react";
 
 export const EditUserModal = ({
@@ -21,7 +21,7 @@ export const EditUserModal = ({
 
   const handleSubmit = (formData: FormData) => {
     startTransition(async () => {
-      await EditUserAction(formData);
+      await editUserAction(formData);
       onClose?.();
     });
   };
