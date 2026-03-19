@@ -1,3 +1,4 @@
+"use server";
 import { GetCurrentUserAction } from "@/actions/authActions";
 import { getGlobalPaymentsAction } from "@/actions/paymentsActions";
 import { PaymentsTable } from "@/components/user/paymentTable/Table";

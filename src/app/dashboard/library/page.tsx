@@ -1,3 +1,4 @@
+"use server";
 import { IsUserLogged } from "@/actions/authActions";
 import { getUserLibrary } from "@/actions/userAction";
 import { BookExplorer } from "@/components/shared/BookExplorer/BookExplorer";

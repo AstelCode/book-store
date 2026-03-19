@@ -722,7 +722,7 @@ const booksDB: Book[] = [
 
 export const getBooks = async () => {
   const dbToken = process.env.SIMULATED_DB_TOKEN;
-  if (!dbToken) {
+  /*  if (!dbToken) {
     console.warn(
       "⚠️ Advertencia: No se encontró SIMULATED_DB_TOKEN en .env.local. Usando conexión no segura.",
     );
@@ -730,7 +730,7 @@ export const getBooks = async () => {
     console.log(
       `🔒 [Server] Autenticando con DB simulada usando token: ${dbToken.substring(0, 10)}...`,
     );
-  }
+  } */
 
   await delay(500);
   return booksDB;

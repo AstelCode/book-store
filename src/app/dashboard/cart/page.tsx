@@ -1,3 +1,4 @@
+"use server";
 import { IsAdminUser } from "@/actions/authActions";
 import { getUserCartAction } from "@/actions/userAction";
 import { PayContainer } from "@/components/cart/PayContainer";

@@ -1,3 +1,4 @@
+"use server";
 import { IsAdminUser, IsUserLogged } from "@/actions/authActions";
 import { redirect } from "next/navigation";
 import { getBooksAction } from "@/actions/bookAction";
