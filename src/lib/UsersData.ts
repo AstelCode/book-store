@@ -53,7 +53,7 @@ export const saveUser = async (
   name: string,
   password: string,
 ) => {
-  await delay(500);
+  await delay(200);
   const newId = uuid();
 
   const newUser: User = {
@@ -73,12 +73,12 @@ export const saveUser = async (
 };
 
 export const getUserById = async (id: string) => {
-  await delay(500);
+  await delay(200);
   return usersDBMap.get(id) ?? null;
 };
 
 export const findUser = async (email: string, password: string) => {
-  await delay(500);
+  await delay(200);
 
   for (const user of usersDBMap.values()) {
     if (user.email === email && user.password === password) {
@@ -89,7 +89,7 @@ export const findUser = async (email: string, password: string) => {
 };
 
 export const editUser = async (id: string, data: Partial<User>) => {
-  await delay(500);
+  await delay(200);
 
   const user = usersDBMap.get(id);
   if (!user) return;
@@ -101,7 +101,7 @@ export const editUser = async (id: string, data: Partial<User>) => {
 };
 
 export const markFavoriteBook = async (userId: string, bookId: string) => {
-  await delay(500);
+  await delay(200);
   const user = usersDBMap.get(userId);
   if (!user) return;
 
@@ -115,7 +115,7 @@ export const markFavoriteBook = async (userId: string, bookId: string) => {
 };
 
 export const AddToUserCart = async (userId: string, bookId: string) => {
-  await delay(500);
+  await delay(200);
   const user = usersDBMap.get(userId);
   if (!user) return;
 
@@ -127,7 +127,7 @@ export const AddToUserCart = async (userId: string, bookId: string) => {
 };
 
 export const RemoveFromUserCart = async (userId: string, bookId: string) => {
-  await delay(500);
+  await delay(200);
   const user = usersDBMap.get(userId);
   if (!user) return;
 
@@ -140,7 +140,7 @@ export const MoveUserCartToUserLibrary = async (
   userId: string,
   price: number,
 ) => {
-  await delay(500);
+  await delay(200);
   const user = usersDBMap.get(userId);
   if (!user) return;
 
@@ -152,7 +152,7 @@ export const MoveUserCartToUserLibrary = async (
 };
 
 export const getGlobalPayments = async () => {
-  await delay(500);
+  await delay(200);
 
   return globalPayments
     .map((payment) => {

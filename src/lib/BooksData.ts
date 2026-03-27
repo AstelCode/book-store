@@ -732,17 +732,17 @@ export const getBooks = async () => {
     );
   } */
 
-  await delay(500);
+  await delay(200);
   return booksDB;
 };
 
 export const addBook = async (book: Book) => {
-  await delay(500);
+  await delay(200);
   booksDB.push(book);
 };
 
 export const getBook = async (bookId: string) => {
-  await delay(500);
+  await delay(200);
   return booksDB.find((item) => item.id == bookId) ?? null;
 };
 
@@ -751,7 +751,7 @@ export const addComment = async (
   userId: string,
   bookId: string,
 ) => {
-  await delay(500);
+  await delay(200);
   const book = booksDB.find((item) => item.id == bookId) ?? null;
   if (!book) return;
   book.comments.unshift({ userId, comment, id: uuid() });
