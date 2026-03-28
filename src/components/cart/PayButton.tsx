@@ -3,6 +3,7 @@
 import { moveCartToLibraryAction } from "@/actions/cartActions";
 import { Loader2 } from "lucide-react";
 import { useState, useTransition } from "react";
+import toast from "react-hot-toast";
 
 export const PayButton = ({ price }: { price: number }) => {
   const [isPending, startTransition] = useTransition();
@@ -15,6 +16,7 @@ export const PayButton = ({ price }: { price: number }) => {
 
     startTransition(async () => {
       try {
+        toast.success("Buying completed");
         await moveCartToLibraryAction(price);
       } finally {
         setIsLoading(false);

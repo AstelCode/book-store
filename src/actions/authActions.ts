@@ -7,7 +7,9 @@ export async function SignUpAction(formData: FormData) {
   const email = formData.get("email");
   const password = formData.get("password");
   const name = formData.get("name");
-  if (!email || !password || !name) return;
+  if (!email || !password || !name) {
+    throw new Error("The params are incomplete");
+  }
 
   const user = await saveUser(
     email as string,
@@ -33,7 +35,10 @@ export async function SignInAction(formData: FormData) {
   if (!password || !email) return;
 
   const user = await findUser(email as string, password as string);
-  if (!user) return;
+  if (!user) {
+    throw new Error("The user don't  exits");
+    return;
+  }
 
   const req = await cookies();
 
@@ -52,8 +57,9 @@ export async function SignInAction(formData: FormData) {
       path: "/",
     });
     redirect("/dashboard/user");
+  } else {
+    redirect("/dashboard/library");
   }
-  redirect("/dashboard/library");
 }
 
 export async function GetCurrentUserAction() {
@@ -72,7 +78,8 @@ export async function IsAdminUser() {
 }
 
 export async function LogOutAction() {
-  (await cookies()).delete("auth_token");
-  (await cookies()).delete("isAdmin");
+  const req = await cookies();
+  req.delete("auth_token");
+  req.delete("isAdmin");
   redirect("/auth");
 }
