@@ -11,16 +11,21 @@ export const AddBookForm = () => {
       action={addBookAction}
       className="grid grid-cols-2 h-full p-6 gap-5 grid-rows-[1fr_50px]"
     >
-      <ImageInput name="cover" />
+      <ImageInput name="cover" required />
       <div className="flex flex-col gap-2">
         <label htmlFor="name">Name</label>
-        <Input id="name" type="text" name="name" />
+        <Input id="name" type="text" name="name" required />
         <label htmlFor="price">Price</label>
-        <Input id="price" type="number" name="price" />
+        <Input id="price" type="number" name="price" required />
         <label htmlFor="language">Language</label>
-        <Input id="language" type="text" name="language" />
+        <Input id="language" type="text" name="language" required />
         <label htmlFor="description">Description</label>
-        <TextArea id="description" className="max-h-50" name="description" />
+        <TextArea
+          id="description"
+          className="max-h-50"
+          name="description"
+          required
+        />
       </div>
       <div className="col-start-1 col-span-3 row-start-2">
         <Submit name="Add book" />

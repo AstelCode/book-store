@@ -8,11 +8,13 @@ export const ImageInput = ({
   size,
   src,
   name,
+  required,
 }: {
   logo?: boolean;
   size?: number;
   name?: string;
   src?: string;
+  required?: boolean;
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(src ?? null);
@@ -56,6 +58,7 @@ export const ImageInput = ({
           accept="image/*"
           onChange={handleImage}
           name={name}
+          required={required}
         />
 
         {preview && (
